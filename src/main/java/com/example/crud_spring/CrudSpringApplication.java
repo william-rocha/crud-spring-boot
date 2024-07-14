@@ -2,13 +2,11 @@ package com.example.crud_spring;
 
 import com.example.crud_spring.model.Course;
 import com.example.crud_spring.repository.CourseRepository;
-import org.apache.catalina.core.ApplicationContext;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
-import java.util.Arrays;
 
 @SpringBootApplication
 public class CrudSpringApplication {
@@ -26,7 +24,7 @@ public class CrudSpringApplication {
 
 			Course c = new Course();
 			c.setName("Angular com Spring");
-			c.setCategory("front-end");
+			c.setCategory("Front-end");
 
 			courseRepository.save(c);
 		};
