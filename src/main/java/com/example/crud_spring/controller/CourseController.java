@@ -22,23 +22,23 @@ public class CourseController {
         return courseRepository.findAll();
     };
 
+    @GetMapping("/{id}")
+    ResponseEntity<Course> findById(@PathVariable Long id) {
+//        se não achar retorna 404
+        return courseRepository.findById(id)
+                .map(record -> ResponseEntity.ok().body(record))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+//    retorna Optional
+//  @GetMapping("/{id}")
+//   public Course findById(@PathVariable Long id) {
+//    return courseRepository.findById(id);
+//}
+
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     public Course create(@RequestBody Course course) {
         return courseRepository.save(course);
     }
-
-
-//    @PostMapping
-//    public ResponseEntity<Course> create(@RequestBody Course course) {
-////        created 201
-//        return ResponseEntity.status(HttpStatus.CREATED).body(courseRepository.save(course));
-//    }
-
-//    @PostMapping
-////    public void create(@RequestBody Course course) {
-//    public Course create(@RequestBody Course course) {
-////        System.out.println(course.getName());
-//       return courseRepository.save(course); success 200
-//    }
 }
