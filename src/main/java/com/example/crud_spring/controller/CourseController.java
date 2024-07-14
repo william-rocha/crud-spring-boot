@@ -23,7 +23,7 @@ public class CourseController {
     };
 
     @GetMapping("/{id}")
-  public ResponseEntity<Course> findById(@PathVariable Long id) {
+    public ResponseEntity<Course> findById(@PathVariable Long id) {
 //        se não achar retorna 404
         return courseRepository.findById(id)
                 .map(record -> ResponseEntity.ok().body(record))
@@ -45,5 +45,15 @@ public class CourseController {
                            Course updated = courseRepository.save(recordFound);
                            return ResponseEntity.ok().body(updated);
                         }).orElse(ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        return courseRepository.findById(id)
+                .map(recordFound -> {
+                    courseRepository.deleteById(id);
+                    return ResponseEntity.noContent().<Void>build();
+                })
+                .orElse(ResponseEntity.notFound().build());
     }
 }
