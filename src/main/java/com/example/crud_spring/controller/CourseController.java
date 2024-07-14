@@ -14,18 +14,10 @@ import java.util.List;
 @AllArgsConstructor
 public class CourseController {
 
-//    @Autowired
-//@AllArgsConstructor gerou o constructor por debaixo dos panos
     private final CourseRepository courseRepository;
-
-//  generate => controller  public CourseController(CourseRepository courseRepository) {
-//        this.courseRepository = courseRepository;
-//    }
 
     @GetMapping
     public List<Course> list() {
-//        list<Object>
-//            return null;
         return courseRepository.findAll();
     };
 }
