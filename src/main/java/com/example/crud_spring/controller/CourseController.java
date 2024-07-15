@@ -1,5 +1,6 @@
 package com.example.crud_spring.controller;
 
+import com.example.crud_spring.dto.CourseDTO;
 import com.example.crud_spring.model.Course;
 import com.example.crud_spring.service.CourseService;
 import jakarta.validation.Valid;
@@ -26,24 +27,25 @@ public class CourseController {
     }
 
     @GetMapping
-    public List<Course> list() {
+    public List<CourseDTO> list() {
         return courseService.list();
     };
 
     @GetMapping("/{id}")
-    public Course findById(@PathVariable @NotNull @Positive Long id) {
+    public CourseDTO findById(@PathVariable @NotNull @Positive Long id) {
         return courseService.findById(id);
 
     }
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Course create(@RequestBody @Valid Course course) {
+    public CourseDTO create(@RequestBody @Valid CourseDTO course) {
         return courseService.create(course);
     }
 
     @PutMapping("/{id}")
-    public Course update(@PathVariable @NotNull @Positive Long id, @RequestBody @Valid Course course) {
+    public CourseDTO update(@PathVariable @NotNull @Positive Long id,
+                            @RequestBody @Valid @NotNull CourseDTO course) {
         return courseService.update(id, course);
 //                .map(recordFound -> ResponseEntity.ok().body(recordFound))
 //                .orElse(ResponseEntity.notFound().build());

@@ -11,7 +11,7 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
 import org.hibernate.validator.constraints.Length;
 
-
+// camada de dominio
 @Data
 @Entity
 //@table(name = "cursos")
