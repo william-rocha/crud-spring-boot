@@ -1,5 +1,6 @@
 package com.example.crud_spring.model;
 
+import com.example.crud_spring.enums.Category;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
@@ -33,10 +34,12 @@ public class Course {
         private String name;
 
         @NotNull
-        @Length(max = 10)
-        @Pattern(regexp = "Back-end|Front-end")
-        @Column(length = 10, nullable = false)
-        private String category;
+//        @Length(max = 10)
+//        @Pattern(regexp = "Back-end|Front-end")
+        @Column(nullable = false)
+//        ordinal pega o index
+        @Enumerated(EnumType.ORDINAL)
+        private Category category;
 
         @NotNull
         @Length(max = 10)
